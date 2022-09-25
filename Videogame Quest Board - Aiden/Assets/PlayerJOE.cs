@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class PlayerJOE : MonoBehaviour
 {
 
     public int experience = 0;
@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
             experience = experience - 50;
             experienceLevel += 1;
         }
+        print("Amount of experience you have is: " + experience);
+        print("The level your at is: " + experienceLevel);
     }
 
 }
