@@ -9,10 +9,18 @@ public class PlayerJOE : MonoBehaviour
     public int experienceLevel = 1;
     public int gold = 0;
 
+    public Quest quest;
+
+
     public void GoBattle()
     {
-        experience += 5;
-        gold += 1;
+        if (quest.isActive)
+        {
+            experience += quest.experienceReward;
+            gold += quest.goldReward;
+            quest.Complete();
+        }
+     
         if(experience >= 50)
         {
             experience = experience - 50;
