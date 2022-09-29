@@ -14,24 +14,25 @@ public class ProgressBar : MonoBehaviour
     public ExperienceTillNextLevel nextExp;
 
 
+
     private void Awake()
     {
         slider = gameObject.GetComponent<Slider>();
         particleSys = GameObject.Find("Progress Bar Particles").GetComponent<ParticleSystem>();
         player = FindObjectOfType<PlayerJOE>();
-        nextExp = gameObject.GetComponent<ExperienceTillNextLevel>();
+        nextExp = FindObjectOfType<ExperienceTillNextLevel>();
     }
 
     void Start()
     {
-        ////IncrementProgress(0.75f);
+        //IncrementProgress(0.75f);
     }
 
     void Update()
     {
         if (exp < player.experience)
         {
-            IncrementProgress((player.experience - exp)/nextExp.experienceTillNextLevel);
+            IncrementProgress((player.experience - exp) / nextExp.experienceTillNextLevel);
         } ////Check if player has gained exp and if they have, raise experience
 
 
@@ -45,20 +46,22 @@ public class ProgressBar : MonoBehaviour
             }
             slider.value += FillSpeed * Time.deltaTime;
             if (!particleSys.isPlaying)
+            {
                 particleSys.Play();
-        }
-        else
-        {
-            particleSys.Stop();
-        }
+            }
 
+            else
+            {
+                particleSys.Stop();
+            }
 
-        exp = player.experience;
+            exp = player.experience;
+        }
     }
-
 
     public void IncrementProgress(float newProgress)
     {
         targetProgress = slider.value + newProgress;
     }
+
 }
